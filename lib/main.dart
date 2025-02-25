@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quote.dart';
+import 'quote_card.dart';
 
 void main() {
   runApp(MaterialApp(home: QuoteList()));
@@ -14,34 +15,19 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
-    Quote('Be yourself; everyone else is already taken', 'Oscar Wilde'),
-    Quote('I have nothing to declare except my genius', 'Oscar Wilde'),
-    Quote('The truth is rarely pure and never simple', 'Oscar Wilde'),
+    Quote(
+      text: 'Be yourself; everyone else is already taken',
+      author: 'Oscar Wilde',
+    ),
+    Quote(
+      text: 'I have nothing to declare except my genius',
+      author: 'Oscar Wilde',
+    ),
+    Quote(
+      text: 'The truth is rarely pure and never simple',
+      author: 'Oscar Wilde',
+    ),
   ];
-
-  Widget quoteTemplate(quote) {
-    return Card(
-      color: Colors.white,
-      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              quote.text,
-              style: TextStyle(color: Colors.grey[600], fontSize: 18.0),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              quote.author,
-              style: TextStyle(color: Colors.grey[900], fontSize: 14.0),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +39,7 @@ class _QuoteListState extends State<QuoteList> {
         foregroundColor: Colors.white,
       ),
       body: Column(
-        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ),
     ));
   }
