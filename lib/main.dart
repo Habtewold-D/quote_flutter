@@ -29,18 +29,31 @@ class _QuoteListState extends State<QuoteList> {
     ),
   ];
 
+  // The delete function takes a Quote object and removes it from the list
+  void delete(Quote quote) {
+    setState(() {
+      quotes.remove(quote);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return (Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Awesome Quotes'),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
         foregroundColor: Colors.white,
       ),
-      body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+      body: ListView(
+        children:
+            quotes
+                .map(
+                  (quote) =>
+                      QuoteCard(quote: quote, delete: () => delete(quote)),
+                )
+                .toList(),
       ),
-    ));
+    );
   }
 }
